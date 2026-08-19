@@ -1,0 +1,145 @@
+SCENARIO 1: Dry run on a mixed folder (13 files, 12 known types + 1 unknown)
+----------------------------------------------------------------------
+$ /usr/bin/python3 /home/claude/redynox-project/task2_file_organizer/organizer.py --source test_sandbox/scenario1_dry_run --dry-run --log-file test_sandbox/scenario1.log
+2026-07-31 18:36:07 [INFO] --- Run started (dry-run) ---
+2026-07-31 18:36:07 [INFO] Scanning 'test_sandbox/scenario1_dry_run' -- 13 file(s) found.
+2026-07-31 18:36:07 [INFO] [DRY RUN] Would move 'presentation.pptx' -> Presentations/
+2026-07-31 18:36:07 [INFO] [DRY RUN] Would move 'song.mp3' -> Audio/
+2026-07-31 18:36:07 [INFO] [DRY RUN] Would move 'random_file.xyz' -> Other/
+2026-07-31 18:36:07 [INFO] [DRY RUN] Would move 'archive.zip' -> Archives/
+2026-07-31 18:36:07 [INFO] [DRY RUN] Would move 'budget.xlsx' -> Spreadsheets/
+2026-07-31 18:36:07 [INFO] [DRY RUN] Would move 'sales_data.csv' -> Spreadsheets/
+2026-07-31 18:36:07 [INFO] [DRY RUN] Would move 'notes.txt' -> Documents/
+2026-07-31 18:36:07 [INFO] [DRY RUN] Would move 'setup.exe' -> Installers/
+2026-07-31 18:36:07 [INFO] [DRY RUN] Would move 'script.py' -> Code/
+2026-07-31 18:36:07 [INFO] [DRY RUN] Would move 'resume.pdf' -> Documents/
+2026-07-31 18:36:07 [INFO] [DRY RUN] Would move 'screenshot.png' -> Images/
+2026-07-31 18:36:07 [INFO] [DRY RUN] Would move 'vacation_photo.jpg' -> Images/
+2026-07-31 18:36:07 [INFO] [DRY RUN] Would move 'movie_clip.mp4' -> Video/
+
+==================================================
+  File Organizer Summary — DRY RUN — no files were moved
+==================================================
+  Total files processed : 13
+    Spreadsheets   : 2
+    Documents      : 2
+    Images         : 2
+    Presentations  : 1
+    Audio          : 1
+    Other          : 1
+    Archives       : 1
+    Installers     : 1
+    Code           : 1
+    Video          : 1
+==================================================
+2026-07-31 18:36:07 [INFO] Run summary: {'Presentations': 1, 'Audio': 1, 'Other': 1, 'Archives': 1, 'Spreadsheets': 2, 'Documents': 2, 'Installers': 1, 'Code': 1, 'Images': 2, 'Video': 1} | errors=0
+2026-07-31 18:36:07 [INFO] --- Run finished ---
+(exit code: 0)
+
+Folder contents after dry run (unchanged): ['archive.zip', 'budget.xlsx', 'movie_clip.mp4', 'notes.txt', 'presentation.pptx', 'random_file.xyz', 'resume.pdf', 'sales_data.csv', 'screenshot.png', 'script.py', 'setup.exe', 'song.mp3', 'vacation_photo.jpg']
+
+SCENARIO 2: Live run on the same set of files
+----------------------------------------------------------------------
+$ /usr/bin/python3 /home/claude/redynox-project/task2_file_organizer/organizer.py --source test_sandbox/scenario2_live_run --log-file test_sandbox/scenario2.log
+2026-07-31 18:36:07 [INFO] --- Run started (live) ---
+2026-07-31 18:36:07 [INFO] Scanning 'test_sandbox/scenario2_live_run' -- 13 file(s) found.
+2026-07-31 18:36:07 [INFO] Moved 'presentation.pptx' -> Presentations/presentation.pptx
+2026-07-31 18:36:07 [INFO] Moved 'song.mp3' -> Audio/song.mp3
+2026-07-31 18:36:07 [INFO] Moved 'random_file.xyz' -> Other/random_file.xyz
+2026-07-31 18:36:07 [INFO] Moved 'archive.zip' -> Archives/archive.zip
+2026-07-31 18:36:07 [INFO] Moved 'budget.xlsx' -> Spreadsheets/budget.xlsx
+2026-07-31 18:36:07 [INFO] Moved 'sales_data.csv' -> Spreadsheets/sales_data.csv
+2026-07-31 18:36:07 [INFO] Moved 'notes.txt' -> Documents/notes.txt
+2026-07-31 18:36:07 [INFO] Moved 'setup.exe' -> Installers/setup.exe
+2026-07-31 18:36:07 [INFO] Moved 'script.py' -> Code/script.py
+2026-07-31 18:36:07 [INFO] Moved 'resume.pdf' -> Documents/resume.pdf
+2026-07-31 18:36:07 [INFO] Moved 'screenshot.png' -> Images/screenshot.png
+2026-07-31 18:36:07 [INFO] Moved 'vacation_photo.jpg' -> Images/vacation_photo.jpg
+2026-07-31 18:36:07 [INFO] Moved 'movie_clip.mp4' -> Video/movie_clip.mp4
+
+==================================================
+  File Organizer Summary — COMPLETE
+==================================================
+  Total files processed : 13
+    Spreadsheets   : 2
+    Documents      : 2
+    Images         : 2
+    Presentations  : 1
+    Audio          : 1
+    Other          : 1
+    Archives       : 1
+    Installers     : 1
+    Code           : 1
+    Video          : 1
+==================================================
+2026-07-31 18:36:07 [INFO] Run summary: {'Presentations': 1, 'Audio': 1, 'Other': 1, 'Archives': 1, 'Spreadsheets': 2, 'Documents': 2, 'Installers': 1, 'Code': 1, 'Images': 2, 'Video': 1} | errors=0
+2026-07-31 18:36:07 [INFO] --- Run finished ---
+(exit code: 0)
+
+Sub-folders created: ['Archives', 'Audio', 'Code', 'Documents', 'Images', 'Installers', 'Other', 'Presentations', 'Spreadsheets', 'Video']
+
+SCENARIO 3: Re-running organizer after adding a duplicate filename
+----------------------------------------------------------------------
+$ /usr/bin/python3 /home/claude/redynox-project/task2_file_organizer/organizer.py --source test_sandbox/scenario2_live_run --log-file test_sandbox/scenario2.log
+2026-07-31 18:36:07 [INFO] --- Run started (live) ---
+2026-07-31 18:36:07 [INFO] Scanning 'test_sandbox/scenario2_live_run' -- 1 file(s) found.
+2026-07-31 18:36:07 [INFO] Moved 'notes.txt' -> Documents/notes_1.txt
+
+==================================================
+  File Organizer Summary — COMPLETE
+==================================================
+  Total files processed : 1
+    Documents      : 1
+==================================================
+2026-07-31 18:36:07 [INFO] Run summary: {'Documents': 1} | errors=0
+2026-07-31 18:36:07 [INFO] --- Run finished ---
+(exit code: 0)
+
+Documents/ contents after collision handling: ['notes.txt', 'notes_1.txt', 'resume.pdf']
+
+SCENARIO 4: Using a custom rules config file (sample_rules.json)
+----------------------------------------------------------------------
+$ /usr/bin/python3 /home/claude/redynox-project/task2_file_organizer/organizer.py --source test_sandbox/scenario4_custom_rules --config sample_rules.json --log-file test_sandbox/scenario4.log
+2026-07-31 18:36:07 [INFO] Loaded custom categorization rules from sample_rules.json
+2026-07-31 18:36:07 [INFO] --- Run started (live) ---
+2026-07-31 18:36:07 [INFO] Scanning 'test_sandbox/scenario4_custom_rules' -- 13 file(s) found.
+2026-07-31 18:36:07 [INFO] Moved 'presentation.pptx' -> Other/presentation.pptx
+2026-07-31 18:36:07 [INFO] Moved 'song.mp3' -> Other/song.mp3
+2026-07-31 18:36:07 [INFO] Moved 'random_file.xyz' -> Other/random_file.xyz
+2026-07-31 18:36:07 [INFO] Moved 'archive.zip' -> Archives/archive.zip
+2026-07-31 18:36:07 [INFO] Moved 'budget.xlsx' -> Spreadsheets/budget.xlsx
+2026-07-31 18:36:07 [INFO] Moved 'sales_data.csv' -> Spreadsheets/sales_data.csv
+2026-07-31 18:36:07 [INFO] Moved 'notes.txt' -> Documents/notes.txt
+2026-07-31 18:36:07 [INFO] Moved 'setup.exe' -> Other/setup.exe
+2026-07-31 18:36:07 [INFO] Moved 'script.py' -> Scripts/script.py
+2026-07-31 18:36:07 [INFO] Moved 'resume.pdf' -> Documents/resume.pdf
+2026-07-31 18:36:07 [INFO] Moved 'screenshot.png' -> Images/screenshot.png
+2026-07-31 18:36:07 [INFO] Moved 'vacation_photo.jpg' -> Images/vacation_photo.jpg
+2026-07-31 18:36:07 [INFO] Moved 'movie_clip.mp4' -> Other/movie_clip.mp4
+
+==================================================
+  File Organizer Summary — COMPLETE
+==================================================
+  Total files processed : 13
+    Other          : 5
+    Spreadsheets   : 2
+    Documents      : 2
+    Images         : 2
+    Archives       : 1
+    Scripts        : 1
+==================================================
+2026-07-31 18:36:07 [INFO] Run summary: {'Other': 5, 'Archives': 1, 'Spreadsheets': 2, 'Documents': 2, 'Scripts': 1, 'Images': 2} | errors=0
+2026-07-31 18:36:07 [INFO] --- Run finished ---
+(exit code: 0)
+
+Sub-folders created with custom rules: ['Archives', 'Documents', 'Images', 'Other', 'Scripts', 'Spreadsheets']
+
+SCENARIO 5: Error handling -- source directory does not exist
+----------------------------------------------------------------------
+$ /usr/bin/python3 /home/claude/redynox-project/task2_file_organizer/organizer.py --source test_sandbox/does_not_exist --log-file test_sandbox/error_case.log
+2026-07-31 18:36:07 [INFO] --- Run started (live) ---
+2026-07-31 18:36:07 [ERROR] Source directory does not exist: test_sandbox/does_not_exist
+(exit code: 1)
+
+Correctly exited with non-zero status: True
+
